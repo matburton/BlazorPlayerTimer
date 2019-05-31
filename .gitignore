@@ -1,9 +1,11 @@
 
-.vs/
-
 bin/
 obj/
+packages/
 
+.vs/
 _ReSharper.Caches/
 
 *.user
+
+launchSettings.json
