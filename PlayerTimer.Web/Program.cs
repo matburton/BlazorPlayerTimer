@@ -29,7 +29,7 @@ namespace PlayerTimer.Web
 
             public void ConfigureServices(IServiceCollection services)
             {
-                services.AddTransient(_ => new Game(TimeSpan.FromMinutes(10)));
+                services.AddTransient(_ => new Game(TimeSpan.FromMinutes(5)));
 
                 services.AddTransient<ICollection<Player>>(_ => new List<Player>());
             }

@@ -67,7 +67,7 @@
 
     public void Dispose() => m_Timer.Dispose();
 
-    private string GetMd5Hash(string email)
+    private static string GetMd5Hash(string email)
     {
         using (var md5Hash = MD5.Create())
         {
