@@ -19,7 +19,7 @@
 @foreach (var player in Players)
 {
     <div style="display: inline-block" onclick="@(() => ActivatePlayer(player))">
-        <PlayerComponent Game="@Game" Player="@player" Active="@(() => m_ActivePlayer == player)" />
+        <PlayerComponent Game="@Game" Player="@player" Active="@(m_ActivePlayer == player)" />
     </div>
 }
 

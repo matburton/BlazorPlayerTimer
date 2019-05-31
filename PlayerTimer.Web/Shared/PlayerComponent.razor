@@ -25,9 +25,9 @@
     private Player Player { get; set; }
 
     [Parameter]
-    public Func<bool> Active { get; set; }
+    public bool Active { get; set; }
 
-    private string Background => Active() ? "background-color--green--3"
+    private string Background => Active ? "background-color--green--3"
                                           : "background-color--blue--5";
     private string TimeLeftLabel()
     {
