@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28917.182
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayerTimer.Web", "PlayerTimer.Web\PlayerTimer.Web.csproj", "{B7D3C4A5-AD8B-4CA4-8E36-4DF57A455BEA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B7D3C4A5-AD8B-4CA4-8E36-4DF57A455BEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7D3C4A5-AD8B-4CA4-8E36-4DF57A455BEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7D3C4A5-AD8B-4CA4-8E36-4DF57A455BEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7D3C4A5-AD8B-4CA4-8E36-4DF57A455BEA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {60E0C62E-E3C0-40BB-A9F9-BC7532E6D84D}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,87 @@
+﻿
+@page "/"
+
+@using System.Security.Cryptography
+@using System.Text
+@using System.Timers
+
+@inject Game Game
+
+@inject ICollection<Player> Players
+
+@implements IDisposable
+
+<form onsubmit="@AddPlayer">
+    <input id="playerEmail" type="email" required="required" placeholder="e@ma.il" style="width: 20rem" bind="@m_NewPlayerEmail" />
+    <input type="submit" value="Add Player" />
+</form>
+
+@foreach (var player in Players)
+{
+    <div style="display: inline-block" onclick="@(() => ActivatePlayer(player))">
+        <PlayerComponent Game="@Game" Player="@player" Active="@(() => m_ActivePlayer == player)" />
+    </div>
+}
+
+@functions
+{
+    protected override void OnInit() =>
+        m_Timer.Elapsed += (_, __) => { UpdateActivePlayer();
+                                        StateHasChanged(); };
+
+    private void ActivatePlayer(Player player)
+    {
+        UpdateActivePlayer();
+
+        if (player == null || player == m_ActivePlayer)
+        {
+            m_Timer.Enabled = false;
+
+            m_ActivePlayer = null;
+        }
+        else
+        {
+            m_OriginalPlayerTimeTaken = player.TimeTaken;
+
+            m_PlayerActivatedTime = DateTime.UtcNow;
+
+            m_ActivePlayer = player;
+
+            m_Timer.Enabled = true;
+        }
+    }
+
+    private void UpdateActivePlayer()
+    {
+        if (m_ActivePlayer != null)
+        {
+            m_ActivePlayer.TimeTaken = m_OriginalPlayerTimeTaken
+                                     + (DateTime.UtcNow - m_PlayerActivatedTime);
+        }
+    }
+
+    private void AddPlayer()
+    {
+        Players.Add(new Player(m_NewPlayerEmail.Split('@').First(), $"https://www.gravatar.com/avatar/{GetMd5Hash(m_NewPlayerEmail)}?d=retro"));
+    }
+
+    public void Dispose() => m_Timer.Dispose();
+
+    private string GetMd5Hash(string email)
+    {
+        using (var md5Hash = MD5.Create())
+        {
+            return BitConverter.ToString(md5Hash.ComputeHash(Encoding.UTF8.GetBytes(email.Trim().ToLowerInvariant()))).ToLowerInvariant().Replace("-", string.Empty);
+        }
+    }
+
+    private string m_NewPlayerEmail = "mat.burton@red-gate.com";
+
+    private TimeSpan m_OriginalPlayerTimeTaken = TimeSpan.Zero;
+
+    private DateTime m_PlayerActivatedTime = DateTime.UtcNow;
+
+    private Player m_ActivePlayer;
+
+    private readonly Timer m_Timer = new Timer(TimeSpan.FromSeconds(1).TotalMilliseconds);
+}
